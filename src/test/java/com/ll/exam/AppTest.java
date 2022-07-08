@@ -3,8 +3,7 @@ package com.ll.exam;
 
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,12 +17,13 @@ public class AppTest {
     }
 
     @Test
-    public void 테스트_스캐너(){
-        String input = """
+    public void 문자열을_스캐너_입력으로_설정(){ //void = 결과를 띄울뿐
+        //String s = “등록\n명언1\n작가1”의 최신 자바표현
+        String input = """ 
                 등록
                 명언1
                 작가1
-                """.stripIndent(); //앞을 없애줌??
+                """.stripIndent(); // 앞 공백 제거
         InputStream in = new ByteArrayInputStream(input.getBytes()); //스캐너 부분 다시 설명...
         Scanner sc = new Scanner(in);
 
@@ -36,4 +36,20 @@ public class AppTest {
         assertEquals("작가1", author);
     }
 
+    @Test
+    public void 표준출력을_리다이렉션하여_결과를_문자열로_받기() throws IOException {
+        // 표준출력을 리다이렉션
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(output));
+
+        System.out.println("안녕");
+
+        String rs = output.toString().trim();
+
+        // 표준출력을 원상복구
+        System.setOut(new PrintStream(new FileOutputStream(FileDescriptor.out)));
+        output.close();
+
+        assertEquals("안녕", rs);
+    }
 }
