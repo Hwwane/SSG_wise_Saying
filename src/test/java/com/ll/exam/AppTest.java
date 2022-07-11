@@ -1,6 +1,5 @@
 package com.ll.exam;
 
-
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -9,22 +8,49 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AppTest {
+    @Test
+    public void Rq__getPath() {
+        Rq rq = new Rq("삭제?id=1");
+
+        String path = rq.getPath();
+
+        assertEquals("삭제", path);
+    }
 
     @Test
-    public void 테스트_실험(){
+    public void Rq__getIntParam() {
+        Rq rq = new Rq("삭제?id=1");
+
+        int id = rq.getIntParam("id", 0);
+
+        assertEquals(1, id);
+    }
+
+    @Test
+    public void Rq__getIntParam__2() {
+        Rq rq = new Rq("검색?id=10&no=1");
+
+        int id = rq.getIntParam("id", 0);
+        int no = rq.getIntParam("no", 0);
+
+        assertEquals(10, id);
+        assertEquals(1, no);
+    }
+
+    @Test
+    public void 테스트_실험() {
         int rs = 10 + 20;
         assertEquals(30, rs);
     }
 
     @Test
-    public void 문자열을_스캐너_입력으로_설정(){ //void = 결과를 띄울뿐
-        //String s = “등록\n명언1\n작가1”의 최신 자바표현
-        String input = """ 
+    public void 문자열을_스캐너의_입력으로_설정() {
+        String input = """
                 등록
                 명언1
                 작가1
-                """.stripIndent(); // 앞 공백 제거
-        InputStream in = new ByteArrayInputStream(input.getBytes()); //스캐너 부분 다시 설명...
+                """.stripIndent();
+        InputStream in = new ByteArrayInputStream(input.getBytes());
         Scanner sc = new Scanner(in);
 
         String cmd = sc.nextLine().trim();
