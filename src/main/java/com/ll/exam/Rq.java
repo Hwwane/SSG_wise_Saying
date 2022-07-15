@@ -14,7 +14,6 @@ public class Rq {
         this.path = urlBits[0];
 
         queryParams = new HashMap<>();
-
         if (urlBits.length == 2) {
             String queryStr = urlBits[1];
 
@@ -45,10 +44,8 @@ public class Rq {
         if (paramValue.length() == 0) {
             return defaultValue;
         }
-
         return Integer.parseInt(paramValue);
     }
-
     public String getPath() {
         return path;
     }

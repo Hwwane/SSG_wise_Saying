@@ -5,6 +5,12 @@ public class WiseSaying {
     String content;
     String author;
 
+    public WiseSaying(int id, String content, String author){
+        this.id = id;
+        this.content = content;
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         return "WiseSaying{" +
@@ -12,11 +18,5 @@ public class WiseSaying {
                 ", content='" + content + '\'' +
                 ", author='" + author + '\'' +
                 '}';
-    }
-
-    public WiseSaying(int id, String content, String author) {
-        this.id = id;
-        this.content = content;
-        this.author = author;
     }
 }
